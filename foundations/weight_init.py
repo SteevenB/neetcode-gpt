@@ -65,7 +65,7 @@ class Solution:
             # x @ w.T
             x = x @ w.T
             
-            #  Relu if Kaiming
+            #  Relu if Kaiming, not here because it's said we do relu for every case
             #if init_type == "kaiming":
             x = torch.relu(x)
 
