@@ -14,8 +14,8 @@ class Solution:
 
         eps=1e-5
         mean=np.mean(x)
-        var=np.mean((x-mean)**2)
+        var=np.mean((x-mean)**2) #can just do np.var(x)
         x_hat=(x-mean)/np.sqrt(var+eps)
         ans=gamma*x_hat+beta
-        
+
         return np.round(ans,5)
