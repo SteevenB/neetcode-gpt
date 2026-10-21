@@ -11,6 +11,7 @@ class Solution:
         # Apply affine transform: y = gamma * x_hat + beta
         # Return (y, running_mean, running_var), all rounded to 4 decimals as lists
         
+        #I can put y out of the loops >:(
         #without torch.tensors here, we convert to numpy array to make numpy multiplication of matrices
         running_mean = np.array(running_mean)
         running_var=np.array(running_var)
