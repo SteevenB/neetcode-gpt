@@ -13,4 +13,6 @@ class Solution:
         
         for i in (token_ids):
             ans.append(embeddings[i])
+
+        #can just do  ans=embeddings[token_ids] woops
         return np.round(ans,5)
