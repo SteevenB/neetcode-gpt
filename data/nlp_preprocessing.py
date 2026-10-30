@@ -10,6 +10,7 @@ class Solution:
         # 3. Combine positive + negative into one list of tensors
         # 4. Pad shorter sequences with 0s using nn.utils.rnn.pad_sequence(tensors, batch_first=True)
 
+        #Would be good to simplify all of this
         ans=set()
 
         every_sentences=[]
