@@ -13,8 +13,8 @@ class TransformerBlock(nn.Module):
         # 1. self.MultiHeadedSelfAttention(model_dim, num_heads)
         # 2. self.VanillaNeuralNetwork(model_dim)
         # 3. Two nn.LayerNorm(model_dim) instances
-        self.multihead=self.MultiHeadedSelfAttention(model_dim,num_heads)
-        self.neuralnetwork=self.VanillaNeuralNetwork(model_dim)
+        self.multihead=self.MultiHeadedSelfAttention(model_dim,num_heads) #for me, multihead and feedforward work in pair, one comprehend words/context and then ff learns for his "own culture" 
+        self.feedforward=self.VanillaNeuralNetwork(model_dim)
         self.layernorm1=nn.LayerNorm(model_dim)
         self.layernorm2=nn.LayerNorm(model_dim)
 
@@ -28,7 +28,7 @@ class TransformerBlock(nn.Module):
         topass=self.layernorm1(embedded) #layernorm before each layer
         embedded=embedded+self.multihead(topass)
         topass=self.layernorm2(embedded) #again
-        embedded=embedded+self.neuralnetwork(topass)
+        embedded=embedded+self.feedforward(topass)
 
         return torch.round(embedded,decimals=4)
 
