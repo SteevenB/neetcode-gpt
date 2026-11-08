@@ -26,7 +26,7 @@ class Solution:
                         match=True
                         break #go out of the for loop, to go back in the while loop, we will come back if the new start is not the last position of the number
 
-                if not match: #if there is never a part in vocab, we still need to go through so we just do start+1 here until it's finished, ideally raise an error
+                if not match: #if there is never a part in vocab, we still need to go through so we just do start+1 here until it's finished, ideally raise an error (we consume one character)
                     tokens.append(strnum[start])
                     start+=1 
 
