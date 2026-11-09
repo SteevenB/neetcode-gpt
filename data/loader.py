@@ -18,8 +18,8 @@ class Solution:
         torch.manual_seed(0)
         start_i=torch.randint(0,len(data)-context_length,size=(batch_size,))
         
-        X_list=[]
-        Y_list=[]
+        X=[]
+        Y=[]
 
         for i in range (batch_size):
             start=start_i[i].item()
@@ -27,11 +27,11 @@ class Solution:
             one_ex_x=data[start:start+context_length]
             one_ex_y=data[start+1:start+1+context_length]
 
-            X_list.append(one_ex_x)
-            Y_list.append(one_ex_y)
+            X.append(one_ex_x)
+            Y.append(one_ex_y)
 
-        X=torch.stack(X_list)
-        Y=torch.stack(Y_list)
+        X=torch.stack(X)
+        Y=torch.stack(Y)
 
         return (X,Y)
 
