@@ -23,21 +23,21 @@ class Solution:
             X=[]
             Y=[]
 
-            for i in range(batch_size):
+            for i in range(batch_size): #get our batch of data to train after
                 sample_X=data[rand_start[i]:rand_start[i]+context_length]
                 sample_Y=data[rand_start[i]+1:rand_start[i]+1+context_length]
                 X.append(sample_X)
                 Y.append(sample_Y)
 
-            X=torch.stack(X)
+            X=torch.stack(X) #stack so they're following eachother
             Y=torch.stack(Y)
 
-            logits=model(X)
+            logits=model(X) #train
 
             logits=logits.reshape(logits.shape[0]*logits.shape[1],logits.shape[2]) #we need for crossentropy to flatten to 2 dim (before:batch_size,context_length,vocab_size)
             Y=Y.reshape(Y.shape[0]*Y.shape[1],)
 
-            loss=F.cross_entropy(logits,Y) #F is pytorch.functional (see above)
+            loss=F.cross_entropy(logits,Y) #F is pytorch.functional (see above), check loss between Y and logits
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
