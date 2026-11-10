@@ -12,8 +12,6 @@ class Solution:
         # sample batches from data, run forward/backward, update weights.
         # Return the final loss rounded to 4 decimals.
 
-        
-        criterion = nn.CrossEntropyLoss()
 
         optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
 
@@ -37,7 +35,7 @@ class Solution:
             logits=logits.reshape(logits.shape[0]*logits.shape[1],logits.shape[2]) #we need for crossentropy to flatten to 2 dim (before:batch_size,context_length,vocab_size)
             Y=Y.reshape(Y.shape[0]*Y.shape[1],)
 
-            loss=F.cross_entropy(logits,Y) #F is pytorch.functional (see above), check loss between Y and logits
+            loss=F.cross_entropy(logits,Y) #F is pytorch.functional (see above), check loss between Y and logits (you can also define criterion = nn.CrossEntropyLoss() before and use it here)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step() #update weights from model
