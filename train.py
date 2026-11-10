@@ -40,7 +40,7 @@ class Solution:
             loss=F.cross_entropy(logits,Y) #F is pytorch.functional (see above), check loss between Y and logits
             optimizer.zero_grad()
             loss.backward()
-            optimizer.step()
+            optimizer.step() #update weights from model
 
         return round(loss.item(),4)
 
